@@ -1,0 +1,12 @@
+GET http://127.0.0.1:5000/USD
+
+###
+
+POST http://127.0.0.1:5000/currencies
+Content-Type: application/json
+
+{
+    "from": "USD",
+    "to": "RUB",
+    "value": 1
+}
