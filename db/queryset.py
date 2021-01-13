@@ -3,8 +3,12 @@ from pymodm.manager import Manager
 
 
 class CurrenciesQuerySet(QuerySet):
-    def find(self):
-        return self.raw({'_id': 'USD'})
+    def value(self, name):
+        currency = self.raw({'name': name})
+        if currency.count() > 0:
+            return currency[0].value
+        else:
+            return None
 
 
 manager = Manager.from_queryset(CurrenciesQuerySet)

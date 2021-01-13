@@ -1,5 +1,6 @@
 import unittest
 from app import app
+from db.models import Currencies
 
 
 class BaseTest(unittest.TestCase):

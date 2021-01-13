@@ -13,11 +13,10 @@ class CurrenciesRequest(Resource):
     def get(name=None):
         if not name:
             return make_response(ApiErrors.have_not_parameter('Currencies, the rate of which you need to get'), 404)
-        currency = Currencies.objects.all()
-        print(currency.count())
-        if currency.count() > 0:
+        value = Currencies.objects.value(name)
+        if value:
             resp = {
-                'value': currency[0].value,
+                'value': value,
                 'currency': name,
                 'base': 'RUB'
             }
@@ -28,10 +27,9 @@ class CurrenciesRequest(Resource):
     @staticmethod
     def post():
         data = request.get_json()
-        try:
-            from_value = Currencies.objects.raw({'_id', data['from']})[0].value
-            to_value = Currencies.objects.raw({'_id', data['to']})[0].value
-        except TypeError:
+        from_value = Currencies.objects.value(data['from'])
+        to_value = Currencies.objects.value(data['to'])
+        if not from_value or not to_value:
             return make_response(ApiErrors.incorrect_parameter(), 404)
         resp = data
         resp['value'] = to_value / from_value * data['value']
