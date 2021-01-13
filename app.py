@@ -1,4 +1,4 @@
-from models import currencies
+from db.models import Currencies
 from flask import Flask, make_response, request
 from flask_restful import Api, Resource
 from errors import ApiErrors
@@ -8,15 +8,16 @@ app = Flask(__name__)
 api = Api(app)
 
 
-class Currencies(Resource):
+class CurrenciesRequest(Resource):
     @staticmethod
     def get(name=None):
         if not name:
             return make_response(ApiErrors.have_not_parameter('Currencies, the rate of which you need to get'), 404)
-        resp = currencies.find_one({'name': name})
-        if resp:
+        currency = Currencies.objects.all()
+        print(currency.count())
+        if currency.count() > 0:
             resp = {
-                'value': resp['value'],
+                'value': currency[0].value,
                 'currency': name,
                 'base': 'RUB'
             }
@@ -28,8 +29,8 @@ class Currencies(Resource):
     def post():
         data = request.get_json()
         try:
-            from_value = currencies.find_one({'name': data['from']})['value']
-            to_value = currencies.find_one({'name': data['to']})['value']
+            from_value = Currencies.objects.raw({'_id', data['from']})[0].value
+            to_value = Currencies.objects.raw({'_id', data['to']})[0].value
         except TypeError:
             return make_response(ApiErrors.incorrect_parameter(), 404)
         resp = data
@@ -37,7 +38,7 @@ class Currencies(Resource):
         return resp
 
 
-api.add_resource(Currencies, '/get_currencies', '/get_currencies/<string:name>')
+api.add_resource(CurrenciesRequest, '/get_currencies', '/get_currencies/<string:name>')
 
 
 if __name__ == '__main__':
