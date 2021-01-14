@@ -1,0 +1,18 @@
+[
+  {
+    "url": "/get_currencies",
+    "headers": {
+      "from": "US",
+      "to": "RUB",
+      "value": 1
+    }
+  },
+  {
+    "url": "/get_currencies/USD",
+    "headers": {
+      "from": "USD",
+      "to": "RUB",
+      "value": 1
+    }
+  }
+]
