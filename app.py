@@ -25,7 +25,9 @@ class CurrenciesRequest(Resource):
             return make_response(ApiErrors.incorrect_parameter(), 404)
 
     @staticmethod
-    def post():
+    def post(name=None):
+        if name:
+            return make_response(ApiErrors.incorrect_parameter(), 404)
         data = request.get_json()
         from_value = Currencies.objects.value(data['from'])
         to_value = Currencies.objects.value(data['to'])
