@@ -1,12 +1,11 @@
 from pymodm import MongoModel, fields
-from pymodm.connection import connect
 from pymongo.write_concern import WriteConcern
 import json
+import os
 
+from cur_api_pkj.db.connection import Connection
 from cur_api_pkj.db.queryset import manager
-
-
-connect('mongodb://localhost:27017/projectDB2', alias="my-app")
+from cur_api_pkj.config import db_alias
 
 
 class Currencies(MongoModel):
@@ -16,15 +15,21 @@ class Currencies(MongoModel):
 
     class Meta:
         write_concern = WriteConcern(j=True)
-        connection_alias = 'my-app'
+        connection_alias = db_alias
         final = True
 
 
-if __name__ == '__main__':
-    with open('data/currencies.json', encoding='utf-8') as file:
+connect = Connection()
+is_db_ready = connect.create_connection()
+if not is_db_ready:
+    with open(f'{os.path.abspath(__file__)[:-9]}\\data\\currencies.json', encoding='utf-8') as file:
         currencies = [
             Currencies(name=key, value=value)
             for key, value in dict(json.load(file)).items()
         ]
         Currencies.objects.bulk_create(currencies)
         print('Data base is created')
+
+
+if __name__ == '__main__':
+    pass

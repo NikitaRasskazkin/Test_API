@@ -103,7 +103,8 @@ API для получения курсов валют.
 - pymongo==3.11.0
 - pytest==6.0.1
 
-Для установки необходимо установить python 3.9 и ввести следующую команду в консоль:
+Для установки необходимо установить python 3.9 MongoDB после чего ввести следующие команды в консоль:
 ```
-pythom -m pip install -r requirements.txt
+pip install -i https://test.pypi.org/simple/ cur-api-pkj-Rasskazkin==0.1.5
+pip install -r requirements.txt
 ```

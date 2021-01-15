@@ -2,7 +2,6 @@ import pytest
 from cur_api_pkj.app import app
 import json
 import tempfile
-import os
 
 
 def open_tests(test_name: str):
@@ -16,7 +15,6 @@ def client():
     db_fd, app.config['DATABASE'] = tempfile.mkstemp()
     with app.test_client() as client:
         yield client
-    os.close(db_fd)
 
 
 def test_get_positive(client):

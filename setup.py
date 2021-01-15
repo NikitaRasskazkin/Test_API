@@ -5,8 +5,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="cur_api_pkj_Rasskazkin",
-    version="0.0.2",
-    author="Rasskazkin",
+    version="0.1.5",
+    author="Rasskazkin_Nikita",
     author_email="rasskazkin64@gmail.com",
     description="Test API project",
     long_description=long_description,
@@ -19,11 +19,13 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.9',
-    install_requires=[
-        'Flask==1.1.2',
-        'Flask-RESTful==0.3.8',
-        'pymodm==0.4.3',
-        'pymongo==3.11.2',
-        'pytest==6.2.1'
-    ]
+    # install_requires=[
+    #     'Flask==1.1',
+    #     'Flask-RESTful==0.3',
+    #     'pymodm==0.4',
+    #     'pymongo==3.11',
+    #     'pytest==6.0'
+    # ],
+    include_package_data=True,
+    zip_safe=False
 )

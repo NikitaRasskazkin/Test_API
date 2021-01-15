@@ -1,6 +1,7 @@
 from cur_api_pkj.db.models import Currencies
 from flask import Flask, make_response, request
 from flask_restful import Api, Resource
+
 from cur_api_pkj.errors import ApiErrors
 
 
