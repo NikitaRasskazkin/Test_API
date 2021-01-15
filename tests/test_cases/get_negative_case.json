@@ -1,6 +1,7 @@
 [
-    "/get_currencies",
-    "/get_currencies/US",
+    "/api/currencies",
+    "/api/currencies/US",
+    "/api/",
     "/",
     "/bad_url"
 ]

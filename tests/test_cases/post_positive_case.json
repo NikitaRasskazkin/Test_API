@@ -1,6 +1,6 @@
 [
   {
-    "url": "/get_currencies",
+    "url": "/api/currencies",
     "headers": {
       "from": "USD",
       "to": "RUB",

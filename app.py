@@ -38,7 +38,7 @@ class CurrenciesRequest(Resource):
         return resp
 
 
-api.add_resource(CurrenciesRequest, '/get_currencies', '/get_currencies/<string:name>')
+api.add_resource(CurrenciesRequest, '/api/currencies', '/api/currencies/<string:name>')
 
 
 if __name__ == '__main__':

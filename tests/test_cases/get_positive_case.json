@@ -1,4 +1,4 @@
 [
-  "/get_currencies/USD",
-  "/get_currencies/RUB"
+  "/api/currencies/USD",
+  "/api/currencies/RUB"
 ]
