@@ -15,7 +15,7 @@ API для получения курсов валют.
 
 ##### Ответ
 
-```json
+```
 {
   "value": <double:currency_rate>,
   "currency": "USD",
@@ -31,7 +31,7 @@ API для получения курсов валют.
 
 ##### Тело
 
-```json
+```
 {
     "from": <string:currency>,
     "to": <string:currency>,
@@ -45,7 +45,7 @@ API для получения курсов валют.
 
 ##### Ответ
 
-```json
+```
 {
     "from": <string:currency>,
     "to": <string:currency>,
