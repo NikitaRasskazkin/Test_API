@@ -1,5 +1,9 @@
 /.idea/
 /__pycache__/
 /venv/
-/db/__pycache__/
+/cur_api_pkj/db/__pycache__/
 /tests/.pytest_cache/
+/.pytest_cache/
+/build/
+/cur_api_pkj_Rasskazkin.egg-info/
+/dist/

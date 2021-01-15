@@ -103,11 +103,7 @@ API для получения курсов валют.
 - pymongo==3.11.0
 - pytest==6.0.1
 
-Для установки всех зависимостей в консоль необходимо установить python 3.9 и ввести следующие команды:
+Для установки необходимо установить python 3.9 и ввести следующую команду в консоль:
 ```
-python -m pip install flask==1.1.2
-python -m pip install flask-restful==0.3.8
-python -m pip install pymodm==0.4.3
-python -m pip install pymongo==3.11.2
-python -m pip install pytest==6.2.1
+pythom -m pip install -r requirements.txt
 ```

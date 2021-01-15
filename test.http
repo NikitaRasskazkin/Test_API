@@ -1,8 +1,8 @@
-GET http://127.0.0.1:5000/get_currencies/USD
+GET http://127.0.0.1:5000/api/currencies/USD
 
 ###
 
-POST http://127.0.0.1:5000/get_currencies
+POST http://127.0.0.1:5000/api/currencies
 Content-Type: application/json
 
 {

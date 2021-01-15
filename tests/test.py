@@ -1,5 +1,5 @@
 import pytest
-from app import app
+from cur_api_pkj.app import app
 import json
 import tempfile
 import os
