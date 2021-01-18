@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="cur_api_pkj_Rasskazkin",
-    version="0.1.5",
+    version="0.1.10",
     author="Rasskazkin_Nikita",
     author_email="rasskazkin64@gmail.com",
     description="Test API project",

@@ -28,7 +28,7 @@ class Connection:
 
     @staticmethod
     def _open_config():
-        with open(f'{os.path.abspath(__file__)[:-13]}\\db_config.json', encoding='utf-8') as file:
+        with open(f'{os.path.abspath(__file__)[:-14]}\\db_config.json', encoding='utf-8') as file:
             return json.load(file)
 
     def _setup_db(self):

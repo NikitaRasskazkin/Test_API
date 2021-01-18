@@ -8,7 +8,11 @@ from cur_api_pkj.db.queryset import manager
 from cur_api_pkj.config import db_alias
 
 
-class Currencies(MongoModel):
+connect = Connection()
+is_db_ready = connect.create_connection()
+
+
+class CurrencyModel(MongoModel):
     name = fields.CharField()
     value = fields.FloatField()
     objects = manager()
@@ -17,17 +21,16 @@ class Currencies(MongoModel):
         write_concern = WriteConcern(j=True)
         connection_alias = db_alias
         final = True
+        collection_name = 'currencies'
 
 
-connect = Connection()
-is_db_ready = connect.create_connection()
 if not is_db_ready:
     with open(f'{os.path.abspath(__file__)[:-9]}\\data\\currencies.json', encoding='utf-8') as file:
         currencies = [
-            Currencies(name=key, value=value)
+            CurrencyModel(name=key, value=value)
             for key, value in dict(json.load(file)).items()
         ]
-        Currencies.objects.bulk_create(currencies)
+        CurrencyModel.objects.bulk_create(currencies)
         print('Data base is created')
 
 
