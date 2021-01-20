@@ -1,8 +1,8 @@
 from flask import make_response, request
 from flask_restful import Resource
 
-from cur_api_pkj.errors import ApiErrors
-from cur_api_pkj.db.models import CurrencyModel
+from errors import ApiErrors
+from db.models import CurrencyModel
 
 
 class Currencies(Resource):
@@ -33,3 +33,9 @@ class Currencies(Resource):
         resp = data
         resp['value'] = to_value / from_value * data['value']
         return resp
+
+
+class Test(Resource):
+    @staticmethod
+    def get(name):
+        return name

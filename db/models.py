@@ -3,9 +3,9 @@ from pymongo.write_concern import WriteConcern
 import json
 import os
 
-from cur_api_pkj.db.connection import Connection
-from cur_api_pkj.db.queryset import manager
-from cur_api_pkj.config import db_alias
+from db.connection import Connection
+from db.queryset import manager
+from config import db_alias
 
 
 connect = Connection()
@@ -25,7 +25,7 @@ class CurrencyModel(MongoModel):
 
 
 if not is_db_ready:
-    with open(f'{os.path.abspath(__file__)[:-9]}\\data\\currencies.json', encoding='utf-8') as file:
+    with open(f'{os.path.abspath(__file__)[:-9]}/data/currencies.json', encoding='utf-8') as file:
         currencies = [
             CurrencyModel(name=key, value=value)
             for key, value in dict(json.load(file)).items()
