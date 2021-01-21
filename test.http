@@ -1,6 +1,11 @@
+GET http://127.0.0.1:5000/api/test/dsr
+
+###
+
 GET http://127.0.0.1:5000/api/currencies/USD
 
 ###
+
 
 POST http://127.0.0.1:5000/api/currencies
 Content-Type: application/json
@@ -10,7 +15,3 @@ Content-Type: application/json
     "to": "RUB",
     "value": 1
 }
-
-###
-
-GET http://127.0.0.1:5000/res/5

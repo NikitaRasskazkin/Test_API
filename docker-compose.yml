@@ -1,13 +1,18 @@
 version: "3"
 
-services:
+networks:
+  app-network:
+    driver: bridge
 
+services:
   server:
-    build: cur_arp_pkj/
-    command: python ./app.py
+    build: .
     container_name: app_server
     ports:
       - 5000:5000
+    networks:
+      - app-network
+
     depends_on:
       - db
 
@@ -16,4 +21,8 @@ services:
     restart: unless-stopped
     container_name: data_base
     ports:
-      - 5001:27017
+      - 27017:27017
+    networks:
+      - app-network
+    volumes:
+      - /db_volume:/data/db

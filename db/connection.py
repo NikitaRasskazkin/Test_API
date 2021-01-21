@@ -32,8 +32,8 @@ class Connection:
             return json.load(file)
 
     def _setup_db(self):
-        print('The database is not configured. Enter the name of the database:')
-        self.name = input('name: ')
+        print('The database is not configured')
+        self.name = "CurrenciesDB"
         client = MongoClient('localhost', self.port)
         db = client[self.name]
 
