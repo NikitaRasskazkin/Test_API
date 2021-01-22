@@ -1,7 +1,3 @@
-GET http://127.0.0.1:5000/api/test/ds
-
-###
-
 GET http://127.0.0.1:5000/api/currencies/USD
 
 ###
@@ -15,9 +11,3 @@ Content-Type: application/json
     "to": "RUB",
     "value": 1
 }
-
-###
-
-GET http://127.0.0.1:8001/re/5
-
-###

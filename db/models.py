@@ -5,11 +5,11 @@ import os
 
 from db.connection import Connection
 from db.queryset import manager
-from config import MONGO_DB_ALIAS
 
 
+alias = 'main'
 connect = Connection()
-is_db_ready = connect.create_connection()
+is_db_ready = connect.create_connection(alias)
 
 
 class CurrencyModel(MongoModel):
@@ -19,7 +19,7 @@ class CurrencyModel(MongoModel):
 
     class Meta:
         write_concern = WriteConcern(j=True)
-        connection_alias = MONGO_DB_ALIAS
+        connection_alias = alias
         final = True
         collection_name = 'currencies'
 
