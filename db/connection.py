@@ -1,46 +1,22 @@
 from pymodm.connection import connect
 from pymongo import MongoClient
-import json
-import os
 
-from config import db_alias
+from config import MONGO_DB_ALIAS, MONGO_DB_NAME, MONGO_HOST, MONGO_CONNECT
 
 
 class Connection:
-    def __init__(self):
-        db_config = self._open_config()
-        self.name = db_config['name']
-        self.port = db_config['port']
-
     def create_connection(self):
-        if self.name:
-            self._connect(self.name, self.port)
+        is_db_exist = self._check_db()
+        self._connect()
+        return is_db_exist
+
+    @staticmethod
+    def _connect():
+        connect(MONGO_CONNECT, alias=MONGO_DB_ALIAS)
+
+    @staticmethod
+    def _check_db():
+        if MONGO_DB_NAME in MongoClient(MONGO_HOST).list_database_names():
             return True
         else:
-            self._setup_db()
-            self._connect(self.name, self.port)
-            self._write_config(self.name)
             return False
-
-    @staticmethod
-    def _connect(name, port):
-        connect(f'mongodb://localhost:{port}/{name}', alias=db_alias)
-
-    @staticmethod
-    def _open_config():
-        with open(f'{os.path.abspath(__file__)[:-14]}/db_config.json', encoding='utf-8') as file:
-            return json.load(file)
-
-    def _setup_db(self):
-        print('The database is not configured')
-        self.name = "CurrenciesDB"
-        client = MongoClient('localhost', self.port)
-        db = client[self.name]
-
-    def _write_config(self, name: str):
-        with open(f'{os.path.abspath(__file__)[:-13]}/db_config.json', 'w', encoding='utf-8') as file:
-            new_db_config = {
-                'name': name,
-                'port': self.port
-            }
-            json.dump(new_db_config, file)

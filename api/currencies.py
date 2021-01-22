@@ -33,9 +33,3 @@ class Currencies(Resource):
         resp = data
         resp['value'] = to_value / from_value * data['value']
         return resp
-
-
-class Test(Resource):
-    @staticmethod
-    def get(name):
-        return name
