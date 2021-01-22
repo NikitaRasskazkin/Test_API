@@ -11,7 +11,7 @@ class CurrenciesQuerySet(QuerySet):
             return None
 
 
-manager = Manager.from_queryset(CurrenciesQuerySet)
+
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ import json
 import os
 
 from db.connection import Connection
-from db.queryset import manager
+from db.managers import manager
 
 
 alias = 'main'

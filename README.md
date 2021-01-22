@@ -2,6 +2,52 @@
 
 API для получения курсов валют.
 
+## Project deployment
+
+### Docker
+
+Для установки веб сервиса используется утилита ```docker-compose```. Для её использования необходимо установить:
+
+- Docker: v20.10.2
+- docker-compose: 1.27.4
+
+Для сборки проекта введите следующую команду из корневой папки проекта:
+
+```docker-compose build```
+
+Для запуска контейнеров с вэб сервисом введите:
+
+```docker-compose up -d```
+
+### Virtualenv
+
+Для установки вэб сервис без использования ```Docker``` 
+вам необходимо самостоятельно установить ```MongoDB```. 
+После чего создайте виртуальное окружение вашего проекта:
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+flask setup
+gunicorn -b :5000 app:app
+```
+
+Для изменения стандартного подключения к ```mongo``` можно отредактировать файл 
+```.env``` 
+
+#### Список зависимостей
+
+- Flask==1.1.2
+- Flask-RESTful==0.3.8
+- pymodm==0.4.3
+- pymongo==3.11.0
+- pytest==6.0.1
+
+
+#### Требования
+- python: 3.9
+- MongoDB: 4.4
+
 ## Available methods
 
 ### Получение курсов валют
@@ -92,19 +138,3 @@ API для получения курсов валют.
 - ILS
 - KRW
 - PLN
-
-## Project deployment
-
-##### Список зависимостей
-
-- Flask==1.1.2
-- Flask-RESTful==0.3.8
-- pymodm==0.4.3
-- pymongo==3.11.0
-- pytest==6.0.1
-
-Для установки необходимо установить python 3.9 MongoDB после чего ввести следующие команды в консоль:
-```
-pip install -i https://test.pypi.org/simple/ cur-api-pkj-Rasskazkin==0.1.5
-pip install -r requirements.txt
-```
