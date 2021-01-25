@@ -2,7 +2,7 @@ from flask import make_response, request
 from flask_restful import Resource
 
 from errors import ApiErrors
-from db.models import CurrencyModel
+from db import repository
 
 
 class Currencies(Resource):
@@ -10,7 +10,7 @@ class Currencies(Resource):
     def get(name=None):
         if not name:
             return make_response(ApiErrors.have_not_parameter('Currencies, the rate of which you need to get'), 404)
-        value = CurrencyModel.objects.value(name)
+        value = repository.get_currency_value(name)
         if value:
             resp = {
                 'value': value,
@@ -26,8 +26,8 @@ class Currencies(Resource):
         if name:
             return make_response(ApiErrors.incorrect_parameter(), 404)
         data = request.get_json()
-        from_value = CurrencyModel.objects.value(data['from'])
-        to_value = CurrencyModel.objects.value(data['to'])
+        from_value = repository.get_currency_value(data['from'])
+        to_value = repository.get_currency_value(data['to'])
         if not from_value or not to_value:
             return make_response(ApiErrors.incorrect_parameter(), 404)
         resp = data

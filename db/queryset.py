@@ -1,5 +1,4 @@
 from pymodm.queryset import QuerySet
-from pymodm.manager import Manager
 
 
 class CurrenciesQuerySet(QuerySet):
@@ -9,9 +8,6 @@ class CurrenciesQuerySet(QuerySet):
             return currency[0].value
         else:
             return None
-
-
-
 
 
 if __name__ == '__main__':
