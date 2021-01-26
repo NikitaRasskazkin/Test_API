@@ -1,38 +1,17 @@
 from pymodm import MongoModel, fields
-from pymongo.write_concern import WriteConcern
-import json
-import os
 
-from db.connection import Connection
+
 from db.managers import manager
+from db.base import BaseModel
 
 
-alias = 'main'
-connect = Connection()
-is_db_ready = connect.create_connection(alias)
-
-
-class CurrencyModel(MongoModel):
+class Currency(MongoModel, BaseModel):
     name = fields.CharField()
     value = fields.FloatField()
     objects = manager()
 
-    class Meta:
-        write_concern = WriteConcern(j=True)
-        connection_alias = alias
-        final = True
-        collection_name = 'currencies'
 
-
-if not is_db_ready:
-    with open(f'{os.path.abspath(__file__)[:-9]}/data/currencies.json', encoding='utf-8') as file:
-        currencies = [
-            CurrencyModel(name=key, value=value)
-            for key, value in dict(json.load(file)).items()
-        ]
-        CurrencyModel.objects.bulk_create(currencies)
-        print('Data base is created')
-
+models = [Currency]
 
 if __name__ == '__main__':
     pass

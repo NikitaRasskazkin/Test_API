@@ -3,8 +3,9 @@
     "url": "/api/currencies",
     "headers": {
       "from": "USD",
-      "to": "RUB",
+      "to": "EUR",
       "value": 1
-    }
+    },
+    "value": 0.8223007973
   }
 ]

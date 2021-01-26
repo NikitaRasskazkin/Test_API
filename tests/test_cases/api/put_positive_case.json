@@ -1,0 +1,11 @@
+[
+  {
+    "url": "http://127.0.0.1:5000/api/currencies",
+    "headers": {
+      "currency": "USD",
+      "base": "EUR",
+      "value": 0.8
+    },
+    "value": 0.0138806067
+  }
+]

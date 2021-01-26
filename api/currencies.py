@@ -26,10 +26,23 @@ class Currencies(Resource):
         if name:
             return make_response(ApiErrors.incorrect_parameter(), 404)
         data = request.get_json()
-        from_value = repository.get_currency_value(data['from'])
-        to_value = repository.get_currency_value(data['to'])
-        if not from_value or not to_value:
+        converted_currency = repository.get_converted_currency(data['from'], data['to'], data['value'])
+        if converted_currency is not None:
+            return {
+                'from': data['from'],
+                'to': data['to'],
+                'value': converted_currency
+            }
+        else:
             return make_response(ApiErrors.incorrect_parameter(), 404)
-        resp = data
-        resp['value'] = to_value / from_value * data['value']
-        return resp
+
+    @staticmethod
+    def put(name=None):
+        if name:
+            return make_response(ApiErrors.incorrect_parameter(), 404)
+        data = request.get_json()
+        base_value = repository.get_currency_value(data['base'])
+        if repository.update_currency(data['currency'], base_value / data['value']) is not None:
+            return make_response({'status': 'OK'}, 200)
+        else:
+            return make_response(ApiErrors.incorrect_parameter(), 404)  # TODO: refactor errors raise
