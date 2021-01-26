@@ -8,6 +8,17 @@ Content-Type: application/json
 
 {
     "from": "USD",
-    "to": "RUB",
+    "to": "EUR",
     "value": 1
+}
+
+###
+
+PUT http://127.0.0.1:5000/api/currencies
+Content-Type: application/json
+
+{
+    "currency": "USD",
+    "base": "EUR",
+    "value": 0.8
 }

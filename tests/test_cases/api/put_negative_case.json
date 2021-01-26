@@ -5,7 +5,8 @@
       "currency": "USD",
       "base": "EUR",
       "value": 0.8
-    }
+    },
+    "status": 404
   },
   {
     "url": "http://127.0.0.1:5000/api/currencies",
@@ -13,6 +14,16 @@
       "currency": "US",
       "base": "EUR",
       "value": 0.8
-    }
+    },
+    "status": 422
+  },
+  {
+    "url": "http://127.0.0.1:5000/api/currencies",
+    "headers": {
+      "Invalid": "USD",
+      "base": "EUR",
+      "value": 0.8
+    },
+    "status": 422
   }
 ]

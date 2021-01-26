@@ -2,9 +2,9 @@
   {
     "url": "/api/currencies",
     "headers": {
+      "value": 1,
       "from": "USD",
-      "to": "EUR",
-      "value": 1
+      "to": "EUR"
     },
     "value": 0.8223007973
   }

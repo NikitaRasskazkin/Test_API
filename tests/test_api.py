@@ -44,7 +44,7 @@ class TestCurrencies:
     def test_post_negative(self, client):
         for test in get_tests('api', 'post_negative_case'):
             response = client.post(test['url'], json=test['headers'])
-            assert response.status_code == 404
+            assert response.status_code == test['status']
 
     def test_put_positive(self, client):
         for test in get_tests('api', 'put_positive_case'):
@@ -55,7 +55,7 @@ class TestCurrencies:
     def test_put_negative(self, client):
         for test in get_tests('api', 'put_negative_case'):
             response = client.put(test['url'], json=test['headers'])
-            assert response.status_code == 404
+            assert response.status_code == test['status']
 
 
 if __name__ == '__main__':

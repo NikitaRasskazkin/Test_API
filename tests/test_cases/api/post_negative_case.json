@@ -5,7 +5,8 @@
       "from": "US",
       "to": "RUB",
       "value": 1
-    }
+    },
+    "status": 422
   },
   {
     "url": "/api/currencies/USD",
@@ -13,6 +14,38 @@
       "from": "USD",
       "to": "RUB",
       "value": 1
-    }
+    },
+    "status": 404
+  },
+  {
+    "url": "/api/currencies",
+    "headers": {
+      "Invalid": "USD",
+      "to": "RUB",
+      "value": 1
+    },
+    "status": 422
+  },
+  {
+    "url": "/api/currencies",
+    "headers": {
+      "Invalid_1": "USD",
+      "": "RUB",
+      "value": 1
+    },
+    "status": 422
+  },
+  {
+    "url": "/api/currencies",
+    "headers": {
+      "from": "USD"
+    },
+    "status": 422
+  },
+  {
+    "url": "/api/currencies",
+    "headers": {
+    },
+    "status": 422
   }
 ]
